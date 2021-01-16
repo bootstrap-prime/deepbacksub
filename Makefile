@@ -20,7 +20,7 @@ else
 endif
 
 deepseg: $(TFLIBS)/libtensorflow-lite.a deepseg.cc loopback.cc transpose_conv_bias.cc
-	g++ $^ ${CFLAGS} ${LDFLAGS} -o $@
+	g++ -o $@ $^ ${CFLAGS} ${LDFLAGS}
 
 $(TFLIBS)/libtensorflow-lite.a: $(TFLITE)
 #	sh $(TFLITE)/download_dependencies.sh && sh $(TFLITE)/build_lib.sh
@@ -28,6 +28,7 @@ $(TFLIBS)/libtensorflow-lite.a: $(TFLITE)
 
 $(TFLITE):
 	git submodule update --init --recursive
+	git checkout r2.4
 
 all: deepseg
 
