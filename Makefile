@@ -23,6 +23,7 @@ deepseg: $(TFLIBS)/libtensorflow-lite.a deepseg.cc loopback.cc transpose_conv_bi
 	g++ $^ ${CFLAGS} ${LDFLAGS} -o $@
 
 $(TFLIBS)/libtensorflow-lite.a: $(TFLITE)
+#	sh $(TFLITE)/download_dependencies.sh && sh $(TFLITE)/build_lib.sh
 	cd $(TFLITE) && ./download_dependencies.sh && ./build_lib.sh
 
 $(TFLITE):
